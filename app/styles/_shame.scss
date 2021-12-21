@@ -1,0 +1,590 @@
+/* ==========================================================================
+   #SHAME
+   Dirty temporary css for demo purposes.
+   Some parts will be reused, but most of them will not.
+   ========================================================================== */
+
+// Temporary focus overrides for focus area's
+// @TODO: discuss where to put this or how to fix this focus style.
+#main:focus,
+#content:focus {
+  outline: 0;
+}
+
+// Fix ACMIDM login alerts/loading in header
+// @TODO: rework ACMIDM components to work with appuniversum classes
+.au-c-main-header__actions .au-c-alert {
+  position: absolute;
+  right: $au-unit-small + $au-unit-tiny;
+  max-width: 480px;
+  top: $au-unit-large + $au-unit-tiny;
+}
+
+// Position ACMIDM login loader
+.au-c-main-header__actions .au-c-loader {
+  position: absolute;
+  right: 0;
+  max-width: 480px;
+  top: $au-unit-large - $au-unit-tiny;
+  padding: 0;
+  background-color: $au-white;
+}
+
+.au-c-dropdown__menu [role="menuitem"] {
+  padding-top: $au-unit-tiny;
+  padding-bottom: $au-unit-tiny;
+}
+
+// Toolbar alignment fix
+// @TODO: port to ember-appuniversum component
+.au-c-toolbar__group {
+  align-items: center !important; // Fix toolbar alignment
+}
+
+// Right aligned toolbar group
+// @TODO: port to ember-appuniversum component
+.au-c-toolbar__group--search {
+  flex-grow: 1;
+  justify-content: flex-end;
+
+  > * + * {
+    margin-left: $au-unit-small;
+  }
+}
+
+.au-c-toolbar__group--actions {
+  > * + * {
+    margin-left: $au-unit-small;
+  }
+}
+
+// Fix visited state on links acting as buttons
+// @TODO: port to ember-appuniversum component or convert link to button
+.au-c-button-link {
+  @include au-font-size($au-button-font-size, $au-button-height - $au-button-border * 2);
+  cursor: default;
+  font-family: $au-font;
+  font-weight: $au-regular;
+  height: $au-button-height;
+  text-decoration: none;
+  text-align: center;
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 $au-unit-small .1rem; // Visually center the text in the button
+  border-radius: $au-radius;
+  border: $au-button-border solid $au-button-contrast-color;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color $au-transition, background-color $au-transition, border-color $au-transition, box-shadow $au-transition;
+
+  &,
+  &:visited {
+    color: $au-button-color;
+    background-color: $au-button-contrast-color;
+    box-shadow: inset 0px 0px 0px $au-button-border transparent;
+  }
+
+  &:hover,
+  &:focus {
+    color: $au-button-color;
+    background-color: $au-button-contrast-hover-color;
+    text-decoration: none;
+  }
+
+  &:focus {
+    outline: $au-outline;
+  }
+
+  &:active {
+    background-color: $au-button-contrast-active-color;
+  }
+}
+
+// Drag button
+.au-c-button--drag {
+  cursor: grab;
+
+  .au-c-icon {
+    width: 1.75rem;
+    height: 1.75rem;
+    bottom: 0;
+  }
+}
+
+// Data table quick fix
+// @TODO port to appuniversum
+.au-c-data-table__header th {
+  border-radius: 0;
+}
+
+// Lists
+.au-c-list-divider {
+  font-style: italic;
+
+  a,
+  h2 {
+    font-style: normal;
+  }
+
+  strong {
+    font-style: normal;
+    font-weight: 500;
+    border-bottom: .2rem dotted $au-gray-300;
+  }
+
+  .au-c-list-divider {
+    padding-left: $au-unit - $au-unit-tiny*1.5;
+    border-left: .3rem solid $au-gray-300;
+    margin-top: $au-unit-tiny*1.5;
+  }
+
+  .au-c-list-numbered {
+    border-left: .3rem solid $au-gray-300;
+    margin-top: $au-unit-small;
+  }
+
+  .au-c-list-divider .au-c-list-divider__item,
+  .au-c-list-numbered .au-c-list-numbered__item {
+    padding-left: 0;
+  }
+
+  .au-c-list-divider .au-c-list-divider__item:last-child,
+  .au-c-list-numbered .au-c-list-numbered__item:last-child {
+    padding-bottom: 0;
+  }
+
+  .au-c-list-divider .au-c-list-divider__item:first-child,
+  .au-c-list-numbered .au-c-list-numbered__item:first-child {
+    padding-top: 0;
+  }
+}
+
+.au-c-list-divider__item {
+  padding: $au-unit-tiny*1.5;
+  position: relative;
+
+  & + & {
+    border-top: .1rem dotted $au-gray-300;
+  }
+
+  &.has-error {
+    padding-left: $au-unit + $au-unit-tiny;
+  }
+
+  &.has-error:before {
+    content: "!";
+    font-size: $au-label-error-badge-font-size;
+    font-style: normal;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: $au-white;
+    position: absolute;
+    top: 50%;
+    left: $au-unit-tiny/2;
+    transform: translateY(-50%);
+    background-color: $au-label-error-badge-color;
+    width: $au-unit-small * 1.5;
+    height: $au-unit-small * 1.5 - .05rem;
+    border-radius: $au-unit-small * 1.5;
+    margin-right: $au-unit-tiny;
+  }
+}
+
+.au-c-list-numbered {
+  list-style: decimal;
+  padding-left: $au-unit;
+  font-style: normal;
+}
+
+.au-c-list-numbered__item {
+  padding: $au-unit-tiny*1.5;
+  position: relative;
+
+  & + & {
+    border-top: .1rem dotted $au-gray-300;
+  }
+
+  &.has-error {
+    padding-left: $au-unit + $au-unit-tiny;
+  }
+
+  &.has-error:before {
+    content: "!";
+    font-size: $au-label-error-badge-font-size;
+    font-style: normal;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: $au-white;
+    position: absolute;
+    top: 50%;
+    left: $au-unit-tiny/2;
+    transform: translateY(-50%);
+    background-color: $au-label-error-badge-color;
+    width: $au-unit-small * 1.5;
+    height: $au-unit-small * 1.5 - .05rem;
+    border-radius: $au-unit-small * 1.5;
+    margin-right: $au-unit-tiny;
+  }
+}
+
+.au-c-datepicker {
+  input,
+  .datepicker {
+    display: block;
+    width: 100%;
+  }
+}
+
+.au-hr-dotted {
+  border: 0;
+  border-top: .1rem dotted $au-gray-200;
+}
+
+// Modal quick fixes
+.au-c-modal__footer {
+  position: relative;
+  z-index: 99;
+}
+
+// Say modal tweaks
+.say-modal-backdrop,
+.au-c-modal-backdrop {
+  z-index: 9998;
+}
+
+.modal-overlay,
+.au-c-modal {
+  z-index: 9999;
+}
+
+.pika-single {
+  z-index: 9999;
+}
+
+// Fix dropdown above
+.ember-basic-dropdown-content--above .ember-power-select-dropdown.ember-basic-dropdown-content--below, .ember-power-select-dropdown.ember-basic-dropdown-content--in-place {
+  border-bottom: 0;
+  border-top: .1rem solid $au-gray-300;
+}
+
+// Align table cell right
+.au-u-table-right {
+  text-align: right;
+
+  .au-c-button {
+    display: flex;
+    margin-left: auto;
+  }
+
+  .au-c-button-group {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .au-c-button-group .au-c-button {
+    margin-left: $au-unit-tiny;
+  }
+}
+
+.au-c-modal--no-padding .au-c-modal__body {
+  padding: 0;
+}
+
+// Replace container class
+.au-c-app-container {
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+
+
+  @include mq(medium) {
+    overflow: hidden;
+  }
+}
+
+.au-u-capitalize {
+  text-transform: capitalize;
+}
+
+// Override card > port to appuniversum cards
+.au-c-card--flex.au-c-card--expandable.au-c-card--publish {
+  padding: 0 !important;
+
+  > .au-c-card__clickable {
+    align-items: center;
+  }
+
+  > .au-c-card__clickable .au-c-card__header {
+    align-items: center;
+    padding: $au-unit-small;
+    margin-bottom: 0;
+  }
+
+  .au-c-card__header .au-c-toolbar--nowrap {
+    align-items: center;
+  }
+
+  .au-c-toolbar .au-c-pill {
+    white-space: nowrap;
+  }
+
+  // Dirty fix for long buttons
+  .au-c-button {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+
+    .au-c-icon {
+      bottom: -.1ex;
+    }
+  }
+
+  > .au-c-card__content {
+    padding: $au-unit-small;
+  }
+
+  .au-c-card__toggle {
+    margin-left: $au-unit-small;
+  }
+}
+
+.au-c-modal--publish {
+  > .au-c-modal__body {
+    padding: 0;
+  }
+}
+
+// Checkbox font size fix
+.au-c-control {
+  @include au-font-size($au-h6);
+}
+
+// Quick fix for standalone tables
+.au-c-table-border {
+  @extend .au-c-data-table__table;
+  @extend .au-c-data-table__table--small;
+  border: .1rem solid $au-gray-300;
+
+  thead {
+    border-bottom: .1rem solid $au-gray-300;
+  }
+
+  th,
+  td {
+    padding: $au-unit-tiny !important;
+  }
+}
+
+// Quick fix for button group
+.au-c-button-group-fix {
+  display: flex;
+
+  .au-c-button {
+    display: inline-flex;
+  }
+}
+
+// Quick fix for radio groups
+.au-c-radio-group {
+  .au-c-control--radio {
+    margin-right: $au-unit-small;
+  }
+}
+
+// Temp fix for data table search component
+.input-field-icon-container--block.input-field-icon-container--left {
+  @extend .au-c-input-wrapper;
+
+  .input-field.input-field--block {
+    @extend .au-c-input;
+    @extend .au-c-input--block;
+  }
+
+  .input-field__icon {
+    position: absolute;
+    left: $au-unit-small;
+    top: $au-unit-tiny - .1rem;
+  }
+}
+
+// Fix missing u-hidden
+.u-hidden {
+  @extend .au-u-hidden-visually;
+}
+
+// Overrides for editor modal
+.au-c-modal--editor {
+  .au-c-modal__body {
+    padding: 0;
+  }
+
+  .au-c-modal__footer {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+}
+
+
+// Bugfix on main-container
+.au-c-main-container {
+  @include mq(medium) {
+    flex-wrap: nowrap !important;
+  }
+}
+
+// Quickfix for inline button group
+.au-c-button-group--inline {
+  align-items: center;
+
+  .au-c-button {
+    display: inline-flex;
+  }
+
+  .au-c-button.is-active {
+    user-select: none;
+  }
+
+  .au-c-button.is-active:hover {
+    box-shadow: none;
+    border-color: $au-blue-600;
+  }
+}
+
+// Fix data-table header on chrome
+.au-c-data-table__header th {
+  box-shadow: inset 0 -0.2rem 0 0 $au-gray-300;
+}
+
+// Custom select
+.au-c-custom-select {
+  @include au-font-size($au-base);
+  font-family: $au-font;
+  width: 100%;
+  padding: $au-unit-tiny;
+  background-color: $au-white;
+  border: 1px solid $au-gray-400;
+  border-radius: .2rem;
+}
+
+.au-c-custom-select-cell {
+  min-width: 150px;
+}
+
+// Fix data table search
+.au-c-data-table .data-table-search input {
+  @extend .au-c-input;
+  @extend .au-c-input--block;
+}
+
+// FIX NBSP ISSUE
+.say-content,
+.au-c-editor-preview,
+.au-c-template {
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+// Button tooltip POC
+.has-tooltip {
+  position: relative;
+  overflow: visible;
+}
+
+.au-c-button__tooltip {
+  @include au-font-size($au-base);
+  display: none;
+  position: absolute;
+
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: $au-z-index-beta;
+  color: $au-white;
+  background-color: $au-blue-900;
+  border-radius: $au-radius;
+  padding: 0 $au-unit-tiny $au-unit-tiny*.3;
+
+  &:before {
+    bottom: 100%;
+    left: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-width: .4rem;
+    margin-left: -.2rem;
+  }
+
+  &:before {
+    border-color: rgba($au-white, 0);
+    border-bottom-color: $au-blue-900;
+  }
+
+  .has-tooltip:hover > &,
+  .has-tooltip:focus > & {
+    display: block;
+  }
+}
+
+.au-c-button__tooltip--top {
+  bottom: calc(100% + .8rem);
+
+  &:before {
+    top: 100%;
+    left: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-width: .4rem;
+    margin-left: -.2rem;
+  }
+
+  &:before {
+    border-color: rgba($au-white, 0);
+    border-top-color: $au-blue-900;
+  }
+}
+
+.au-c-button__tooltip--bottom {
+  top: calc(100% + .8rem);
+
+  &:before {
+    bottom: 100%;
+    left: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-width: .4rem;
+    margin-left: -.2rem;
+  }
+
+  &:before {
+    border-color: rgba($au-white, 0);
+    border-bottom-color: $au-blue-900;
+  }
+}
+
+// DISABLED EDITOR
+// ---
+.say-content--disabled {
+  cursor: default;
+}
+
+// Override main container on mock-login
+.au-c-main-container--mock-login {
+  height: 100%;
+}

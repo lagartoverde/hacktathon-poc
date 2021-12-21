@@ -1,0 +1,10 @@
+<AuCard as |c|>
+  <c.header>
+    <AuHeading @level="2" @skin="4">
+      {{@product.title}}
+    </AuHeading>
+  </c.header>
+  <c.content>
+    <AuButton {{on 'click' (fn @addToCart @product)}}>Select</AuButton>
+  </c.content>
+</AuCard>

@@ -1,0 +1,26 @@
+<div>
+  <div>Cart: {{this.cartLength}} products</div>
+  <AuHeading>Select your products</AuHeading>
+  <div>
+    <div class="au-c-form">
+      <p>
+        <AuLabel for="input-block">Zoek op titel</AuLabel>
+        <AuInput id="input-block" @width="block" @icon="search" @value={{mut this.titleSearch}} />
+      </p>
+
+      <p>
+        <AuLabel for="input-block">Zoek op tag</AuLabel>
+        <AuInput id="input-block" @width="block" @icon="search" @value={{mut this.tagSearch}}/>
+      </p>
+    </div>
+  </div>
+  <div class="au-o-grid">
+    {{#each this.products as |product|}}
+      <div class="au-o-grid__item au-u-1-2">
+        <Product @product={{product}} @addToCart={{this.addToCart}} />
+      </div>
+    {{/each}}
+  </div>
+  <AuLink @linkRoute="checkout" @skin="button"> Checkout </AuLink>
+
+</div>

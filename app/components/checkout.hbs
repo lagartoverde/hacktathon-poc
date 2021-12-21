@@ -1,0 +1,19 @@
+<AuHeading>Checkout</AuHeading>
+{{#each this.shoppingCart.cart as |item|}}
+  <AuCard @flex={{true}} as |c|>
+    <c.header @badgeSkin="brand">
+      <AuHeading @level="2" @skin="4">
+        {{item.title}}
+      </AuHeading>
+    </c.header>
+    <c.content>
+      <AuButton @alert={{true}} @icon='remove' @iconAlignment="left" {{on 'click' (fn this.removeItem item)}}>Delete</AuButton>
+      {{#with (fn this.missingDeps item) as |missing|}}
+        {{#if missing.length}}
+          <DependencyError @target={{@item}} @missingProducts={{missing}}/>
+        {{/if}}
+      {{/with}}
+    </c.content>
+  </AuCard>
+{{/each}}
+<AuLink @linkRoute="scheduler" @skin="button"> Confirm </AuLink>

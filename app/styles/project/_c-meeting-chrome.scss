@@ -1,0 +1,359 @@
+/* ==================================
+   #MEETING CHROME
+   ================================== */
+
+/* Variables
+   ========================================================================== */
+
+
+/* Component
+   ========================================================================== */
+
+.au-c-meeting {
+  background-color: $au-gray-100;
+}
+
+.au-c-meeting-chrome {
+  padding: $au-unit $au-unit/2;
+  width: 100%;
+  position: relative;
+  overflow: visible;
+  z-index: 2;
+
+  @include mq(small) {
+    padding: $au-unit;
+  }
+
+  @include mq(1160px) {
+    left: $au-unit-huge*3;
+    width: calc(100% - #{$au-unit-huge*3});
+  }
+
+  @include mq(large) {
+    left: $au-unit-huge*3.5;
+    width: calc(100% - #{$au-unit-huge*3.5});
+    padding-right: $au-unit-huge*4;
+  }
+}
+
+.au-c-meeting-chrome__paper {
+  @include au-font-size($au-h6);
+  position: relative;
+  width: 100%;
+  min-height: calc(100vh + #{$au-unit});
+  background-color: $au-white;
+  padding: $au-unit-large;
+  box-shadow: 0 .1rem .3rem rgba($au-gray-900, .1), 0 .4rem 2rem rgba($au-gray-900, .035), 0 .1rem .1rem rgba($au-gray-900, .025);
+  cursor: default;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.au-c-meeting-chrome-card {
+  position: relative;
+  color: $au-gray-700;
+  border: .1rem solid $au-gray-300;
+  background-color: $au-gray-100;
+  margin-top: $au-unit-small;
+  margin-bottom: $au-unit-huge + $au-unit;
+  border-radius: $au-radius;
+
+  > .au-c-button {
+    position: absolute;
+    top: calc(100% - .1rem);
+    left: -.1rem;
+    width: calc(100% + .2rem);
+    border-width: .1rem;
+    border-color: $au-gray-300;
+    background-color: $au-white;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+
+  & + .au-c-button {
+    position: relative;
+    margin-top: -$au-unit-small - .1rem !important; // Spacing hack as this button is used in multiple places
+    border-width: .1rem;
+    border-color: $au-gray-300;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+
+  &.au-u-margin-bottom-none + .au-c-button {
+    margin-top: -.1rem !important; // Spacing hack as this button is used in multiple places
+  }
+
+  .au-c-editor-preview {
+    border: 0;
+  }
+}
+
+.au-c-meeting-chrome-card--editable {
+  border: .1rem solid $au-gray-300;
+}
+
+.au-c-meeting-chrome-card--editor {
+  background-color: $au-white;
+}
+
+.au-c-meeting-chrome-card__title {
+  background-color: $au-gray-200;
+  padding: $au-unit-tiny $au-unit-small;
+  border-bottom: .1rem solid $au-gray-300;
+}
+
+.au-c-meeting-chrome-card__title--flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.au-c-meeting-chrome-card__title--inset {
+  margin-top: -$au-unit-small;
+  margin-left: -$au-unit-small;
+  margin-right: -$au-unit-small;
+}
+
+.au-c-meeting-chrome-editable {
+  position: relative;
+  padding-top: $au-unit-small;
+  color: $au-gray-700;
+
+  .container-flex--contain {
+    overflow: visible;
+    margin-top: -$au-unit;
+    border: .1rem solid $au-gray-200;
+  }
+
+  .say-container {
+    position: relative;
+    z-index: 9;
+    overflow: visible !important;
+  }
+
+  .say-container__main {
+    overflow: visible !important;
+  }
+
+  .au-c-rdfa-editor {
+    overflow: visible !important;
+  }
+
+  .tasklist {
+    display: none;
+  }
+
+  .say-editor {
+    background-color: transparent;
+    padding: $au-unit-small + $au-unit-tiny !important;
+    overflow: visible !important;
+  }
+
+  .say-editor__paper,
+  .say-editor__inner {
+    min-height: $au-unit-huge * 2 !important;
+    overflow: visible !important;
+  }
+
+  .say-editor__paper {
+    box-shadow: none;
+    background-color: transparent;
+    padding: 0;
+  }
+
+  .say-editor:not(.show-rdfa-blocks) {
+    *:after {
+      display: none !important;
+    }
+
+    *:before {
+      display: none !important;
+    }
+  }
+
+  .say-toolbar {
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+  }
+
+  .say-container__aside {
+    left: calc(100% - #{$au-unit-huge*3.5});
+    position: absolute;
+    width: $au-unit-huge*3.5;
+    height: 100%;
+    overflow: visible;
+    z-index: 999;
+    padding: $au-unit-small;
+
+    @include mq(large) {
+      left: calc(100% + #{$au-unit-large});
+      width: $au-unit-huge*4;
+    }
+  }
+
+  .say-editor-hints {
+    position: sticky;
+    top: $au-unit + $au-unit-small + $au-unit-tiny;
+  }
+
+  .say-editor-hints__list {
+    position: sticky;
+    top: 0;
+  }
+
+  .say-toast {
+    display: none !important;
+    opacity: 0 !important;
+  }
+
+  .say-modal--fullscreen {
+    transform: translate(0) !important;
+    top: 96px + 20px;
+    left: 0;
+    height: calc(100% - 136px);
+    width: calc(100% - #{$au-unit-large});
+  }
+}
+
+.au-c-meeting-chrome__highlight {
+  display: inline-block;
+  background-color: $au-yellow-200;
+  margin-top: $au-unit-tiny/2;
+  // cursor: not-allowed;
+}
+
+.au-c-meeting-chrome-table {
+  // cursor: not-allowed;
+  @include au-font-size($au-h6);
+  display: table;
+  position: relative;
+  min-width: 50rem;
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: -.1rem;
+
+  strong {
+    font-style: normal;
+    font-weight: 500;
+    border-bottom: .2rem dotted $au-gray-300;
+  }
+
+  thead {
+    position: relative;
+    width: 100%;
+    z-index: $au-z-index-alpha;
+    border-top: 0;
+    border-bottom: .1rem solid $au-gray-300;
+    @include au-font-size($au-base,1.2);
+  }
+
+  tbody tr {
+    border-bottom: .1rem solid $au-gray-300;
+    background-color: $au-gray-100;
+  }
+
+  th {
+    font-weight: $au-medium;
+    text-align: left;
+    padding: $au-unit-tiny $au-unit-small;
+    border-radius: 0;
+  }
+
+  td {
+    padding: $au-unit-small;
+  }
+
+  th {
+    white-space: nowrap;
+  }
+
+  th,
+  td {
+    max-width: 55ch;
+    position: relative;
+    vertical-align: middle;
+  }
+
+  th.is-selectable,
+  td.is-selectable {
+    width: $au-unit-large + $au-unit-tiny;
+  }
+
+  th + th,
+  td + td {
+    &:after {
+      content: "";
+      display: block;
+      position: absolute;
+      width: .1rem;
+      left: -.1rem;
+      top: 0;
+      height: 100%;
+      border-left: .1rem dotted $au-gray-300;
+    }
+  }
+}
+
+.au-c-meeting-sidebar {
+  @include au-font-size($au-h6);
+  opacity: .7;
+  position: fixed;
+  top: $au-unit-huge;
+  left: 0;
+  bottom: 0;
+  padding-top: $au-unit;
+  padding-left: $au-unit-small;
+  padding-right: $au-unit-small;
+  transition: opacity $au-transition;
+  display: none;
+  overflow: auto;
+
+  @include mq(1160px) {
+    display: block;
+    width: $au-unit-huge*3;
+  }
+
+  @include mq(large) {
+    width: $au-unit-huge*3.5;
+  }
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.au-c-meeting-numbered-list {
+  counter-reset: list-number;
+
+  > li + li {
+    border-top: .1rem dashed $au-gray-300;
+  }
+
+  > li {
+    position: relative;
+    padding-bottom: $au-unit-small;
+  }
+
+  > li::before {
+    @include au-font-size(1.3rem);
+    content: counter(list-number);
+    counter-increment: list-number;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: -$au-unit - $au-unit-tiny;
+    top: $au-unit-small + $au-unit-tiny/1.6;
+    color: $au-gray-700;
+    font-weight: $au-medium;
+    width: $au-unit;
+    height: $au-unit;
+    background-color: $au-gray-200;
+    border-radius: $au-unit;
+  }
+}

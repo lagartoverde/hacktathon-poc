@@ -1,0 +1,12 @@
+
+<AuCard as |c|>
+    <c.header>
+        Opgelet: deze producten zijn vereist voor {{@target.title}}
+
+    </c.header>
+    <c.content>
+        {{#each missingProducts as |product|}}
+            <Product @product={{@product}} />
+        {{/each}}
+    </c.content>
+</AuCard>
