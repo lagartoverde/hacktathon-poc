@@ -9,6 +9,21 @@ You need to fulfill the following services in the following order to best optimi
       <block.content as |content|>
         <h2>{{step.title}}</h2>
         <p>{{step.description}}</p>
+          <h3>Extra benodigdheden:</h3>
+          <ul>
+          {{#if step.requires.length}}
+            {{#each step.requires as |requirement|}}
+              <li>
+                <span>
+                  <input type="checkbox" />
+                  <div>
+                    {{requirement}}
+                  </div>
+                </span>
+              </li>
+            {{/each}}
+          {{/if}}
+          </ul>
         <a href="#0" class="cd-read-more">Read more</a>
         <content.date>{{step.startDateString}}</content.date>
       </block.content>
