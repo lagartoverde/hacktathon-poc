@@ -63,6 +63,11 @@ export default class TimelineComponent extends Component {
     return newDate;
   }
   getDateString(date) {
-    return date.toLocaleString('nl-BE', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })
+    return date.toLocaleString('nl-BE', {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
   }
 }

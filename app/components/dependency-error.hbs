@@ -5,8 +5,8 @@
 
     </c.header>
     <c.content>
-        {{#each missingProducts as |product|}}
-            <Product @product={{@product}} />
+        {{#each @missingProducts as |product|}}
+            <Product @product={{product}} @addToCart={{this.addToCart}} />
         {{/each}}
     </c.content>
 </AuCard>

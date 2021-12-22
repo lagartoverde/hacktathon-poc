@@ -24,17 +24,17 @@ export default class StoreComponent extends Component {
 
   get products() {
     let prods = this._products;
-    
     if (this.tagSearch && this.tagSearch.length) {
       prods = prods.filter(
-        (product) => product.tags.filter(
+        (product) =>
+          product.tags.filter(
             (tag) => tag.search(RegExp(this.tagSearch, 'ig')) >= 0
           ).length > 0
       );
     }
     if (this.titleSearch && this.titleSearch.length) {
       prods = prods.filter(
-        (product) => product.title.search(RegExp(this.titleSearch, "ig")) >= 0
+        (product) => product.title.search(RegExp(this.titleSearch, 'ig')) >= 0
       );
     }
 
@@ -43,20 +43,10 @@ export default class StoreComponent extends Component {
 
   @action
   addToCart(product) {
-    console.log('executing');
-    console.log(product);
-    const productInCart = this.cart.find(
-      (cartProduct) => cartProduct.id === product.id
-    );
-    if (productInCart) {
-      alert('Product was already in cart, please select a different one');
-    } else {
-      this.shoppingCart.addItem(product);
-      
-    }
+    this.shoppingCart.addItem(product);
   }
   @action
   goToCheckout() {
-    this.router.transitionTo('checkout')
+    this.router.transitionTo('checkout');
   }
 }

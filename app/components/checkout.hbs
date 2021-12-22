@@ -1,4 +1,4 @@
-<AuHeading>Checkout</AuHeading>
+<AuHeading>Confirmation</AuHeading>
 {{#each this.shoppingCart.cart as |item|}}
   <AuCard @flex={{true}} as |c|>
     <c.header @badgeSkin="brand">
@@ -8,11 +8,11 @@
     </c.header>
     <c.content>
       <AuButton @alert={{true}} @icon='remove' @iconAlignment="left" {{on 'click' (fn this.removeItem item)}}>Delete</AuButton>
-      {{#with (fn this.missingDeps item) as |missing|}}
+      {{#let (get-missing-deps this.shoppingCart item) as |missing|}}
         {{#if missing.length}}
           <DependencyError @target={{@item}} @missingProducts={{missing}}/>
         {{/if}}
-      {{/with}}
+      {{/let}}
     </c.content>
   </AuCard>
 {{/each}}

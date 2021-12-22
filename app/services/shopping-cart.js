@@ -9,8 +9,15 @@ export default class ShoppingCartService extends Service {
   }
 
   addItem(item) {
-    this.cart.push(item);
-    this.cart = this.cart;
+    const productInCart = this.cart.find(
+      (cartProduct) => cartProduct.id === item.id
+    );
+    if (productInCart) {
+      alert('You already added that service, please select a different one');
+    } else {
+      this.cart.push(item);
+      this.cart = this.cart;
+    }
   }
 
   removeItem(itemId) {
